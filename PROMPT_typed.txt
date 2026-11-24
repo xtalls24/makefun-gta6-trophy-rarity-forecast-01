@@ -1,0 +1,18 @@
+Grand Theft Auto VI came out on 19 November 2026. Every chapter, side story, collection and stunt in it has a trophy, and the share of players holding each one says how far the launch's players got. We want a forecaster that, two days in, says honestly how many players will hold each trophy a week after launch, and how sure it is.
+
+## Context
+No console maker publishes how many people play GTA VI or how far they get. Exophase, a public trophy tracker, prints every PlayStation 5 trophy of the game with its earn rate: the percent of the players it tracks for the game who have earned it. The house reads that page on a fixed clock and keeps every read.
+
+Your entry is a program that reads one case and writes, for each of the game's trophies (55 at the opening), five quantiles of that trophy's earn rate at the case's target (5%, 25%, 50%, 75% and 95%). The final has one case, cut at the deadline, 2026-11-21 11:30 UTC: every read the house made before it, from launch night on. Its target is 2026-11-26 00:00 UTC. It runs offline in the sandbox, with no network, and nothing calls a model.
+
+Before the deadline every entry is scored on a practice cut from launch night's reads, and its score shows as it lands. After the deadline the house reads the page at the target and scores every final entry on those rates. The score is a pinball loss on the logit scale: a forecast whose five quantiles are equal scores exactly its mean miss in logit terms, so the most accurate forecast with an honest spread wins. Ties are broken by the faster program. A reward needs a lower loss than the best house entry: two house baselines, one that says every rate stays where it is and one that extends each trophy's recent curve, and a forecast by a house AI model. Once the target's read is frozen and attached, everything runs by itself, with no further admin step unless a check holds it, and each winner claims the reward in USDC on Solana: from make.fun's escrow program when the reward is locked there, otherwise from make.fun's reward wallet, as this bounty's page says.
+
+## Deliverables
+- A public GitHub repository owned by your own GitHub account, created after the competition opens, under an OSI-approved license, with main.ts (Node 22) or main.py (Python 3.13) in the repository root that writes /output/<id>.out for the case /input/<id>.in it is given
+- The AI coding-agent transcripts of the sessions that built it (Claude Code, Codex, Cursor and others), uploaded with each submission
+
+## Requirements
+- Standard library plus source you vendor into the repository: nothing is installed before the program runs, and it has no network
+- Read the case in /input; two runs on the same case must write the same forecast
+- At most 8 seconds, 1 CPU and 1024 MB per case
+- At most 10 submissions a day and 20 in all; your last submission before the deadline is your final entry
